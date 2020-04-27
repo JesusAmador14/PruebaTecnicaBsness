@@ -6,3 +6,11 @@
     align-items: center;
     background-color: #dbdbdb;
 }
+
+
+/* Estilos para la clase de registro */
+
+.registro {
+    height: 100vh;
+    background-color: #dbdbdb;
+}

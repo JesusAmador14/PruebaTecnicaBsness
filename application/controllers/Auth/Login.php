@@ -6,7 +6,8 @@ class Login extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('login');
+		$data['title'] = 'Inicio de sesión';
+		$this->load->view('login', $data);
 	}
 
 	public function loginUser()

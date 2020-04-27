@@ -55,3 +55,5 @@ $route['translate_uri_dashes'] = FALSE;
 
 // Rutas del programa
 $route['login'] = 'Auth/login';
+$route['users/create'] = 'Auth/RegisterUser';
+$route['users'] = 'User';
