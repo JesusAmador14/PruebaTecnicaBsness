@@ -1,0 +1,8 @@
+/* Estilos para la página de login */
+
+.login {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: #dbdbdb;
+}
