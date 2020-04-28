@@ -23,4 +23,6 @@ class User extends CI_Controller
 	{
 		return $this->UserModel->getUsers();
 	}
+
+	private 
 }
