@@ -1,11 +1,14 @@
     $('#formLogin').submit(function(ev) {
         ev.preventDefault();
+        $('#alertError').removeClass('show');
         $.ajax({
             url: 'login/validate',
             type: 'POST',
             data: $(this).serialize(),
             success: function(data) {
                 console.log(data);
+                var response = JSON.parse(data);
+                location.href = response.url;
             },
             statusCode: {
                 400: function(error) {

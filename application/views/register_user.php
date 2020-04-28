@@ -1,5 +1,5 @@
 <section class="container p-5">
-	<form>
+	<form id="formRegistro" method="POST">
 		<div class="row">
 			<div class="card p-0 mx-auto my-2 col-sm-12 col-md-9 col-lg-8">
 				<div class="card-header text-center">
@@ -9,19 +9,19 @@
 					<div class="row">
 						<div class="form-group col-sm-12 col-lg-6">
 							<label for="nombre">Nombre</label>
-							<input type="text" class="form-control" id="nombre" placeholder="Nombre">
+							<input type="text" class="form-control" id="nombre" pattern="/^[a-zñáéíóúüA-ZÑÁÉÍÓÚÜ ,.]*$/u" title="Ingresa solo letras" maxlength="50" minlength="3" placeholder="Nombre">
 						</div>
 						<div class="form-group col-sm-12 col-lg-6">
 							<label for="apellidos">Apellidos</label>
-							<input type="text" class="form-control" id="apellidos" placeholder="Apellidos">
+							<input type="text" class="form-control" id="apellidos" pattern="/^[a-zñáéíóúüA-ZÑÁÉÍÓÚÜ ,.]*$/u" title="Ingresa solo letras" maxlength="50" minlength="3" placeholder="Apellidos">
 						</div>
 						<div class="form-group col-sm-12 col-lg-6">
 							<label for="email">Email</label>
-							<input type="email" class="form-control" id="email" placeholder="Email">
+							<input type="email" class="form-control" id="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" title="Ingresa un formato correcto de email" maxlength="50" minlength="6" placeholder="Email">
 						</div>
 						<div class="form-group col-sm-12 col-lg-6">
 							<label for="telefono">Teléfono</label>
-							<input type="text" class="form-control" id="telefono" placeholder="Teléfono">
+							<input type="text" class="form-control" id="telefono" pattern="^(\d{10})$" title="Debes ingresar solo números" placeholder="Teléfono">
 						</div>
 					</div>
 				</div>
@@ -38,17 +38,17 @@
 							<input type="text" class="form-control" id="codigoPostal" placeholder="Código Postal">
 						</div>
 
-						<div class="form-group col-sm-12 col-lg-6">
+						<div class="form-group col-sm-12 col-lg-6" id="contenedorColonia">
 							<label for="colonia">Colonia</label>
-							<input type="text" class="form-control" id="colonia" placeholder="Colonia">
+							<input type="text" class="form-control" id="colonia" maxlength="50" minlength="2" placeholder="Colonia">
 						</div>
 						<div class="form-group col-sm-12 col-lg-6">
 							<label for="municipio">Municipio/Delegación</label>
-							<input type="text" class="form-control" id="municipio" placeholder="Municipio/Delegación">
+							<input type="text" class="form-control" id="municipio" pattern="/^[a-zñáéíóúüA-ZÑÁÉÍÓÚÜ ,.]*$/u" title="Ingresa solo letras" maxlength="50" minlength="2" placeholder="Municipio/Delegación">
 						</div>
 						<div class="form-group col-sm-12 col-lg-6">
 							<label for="estado">Estado</label>
-							<input type="text" class="form-control" id="estado" placeholder="Estado">
+							<input type="text" class="form-control" id="estado" pattern="/^[a-zñáéíóúüA-ZÑÁÉÍÓÚÜ ,.]*$/u" title="Ingresa solo letras" maxlength="50" minlength="2" placeholder="Estado">
 						</div>
 
 						<div class="form-group col-sm-12 col-lg-6">

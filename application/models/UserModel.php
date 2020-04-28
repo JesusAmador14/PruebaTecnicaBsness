@@ -2,19 +2,15 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class UserModel extends CI_Model
 {
-	private $tabla = 'usuarios';
-	// private $db = null;
 	public function __construct()
 	{
 		parent::__construct();
-		// $this->load->database();
-		// $this->tabla = $this->db->table('Usuarios');
 	}
 
 	public function getUsers()
 	{
 		try {
-			$users = $this->db->query("SELECT nombre, apellidos, email, direccion, telefono, fecha_alta, 
+			$users = $this->db->query("SELECT nombre, apellidos, email, direccion, telefono, Usuarios.fecha_alta, 
 										CASE 
 											When tipo_usuario = 0 THEN 'Administrador'
 											When tipo_usuario = 1 THEN 'Usuario'
@@ -27,7 +23,7 @@ class UserModel extends CI_Model
 										END 
 										AS
 										`status`
-										FROM Usuarios");
+										FROM Usuarios INNER JOIN Accesos ON Usuarios.id = Accesos.id_usuario");
 			if ($users->result() > 0) {
 				return $users->result();
 			} else {

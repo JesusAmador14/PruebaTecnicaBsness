@@ -7,22 +7,26 @@ class User extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('UserModel');
+		$this->load->model('AuthModel');
 	}
 
 	public function index()
 	{
-		$data['title'] = 'Lista de usuarios';
-		$data['clase'] = 'registro';
-		$users['users'] = $this->getUsers();
-		$this->load->view('administracion/header.php', $data);
-		$this->load->view('users_list.php', $users);
-		$this->load->view('administracion/footer.php');
+		if ($this->AuthModel->isLoggedAdministrator()) {
+			$data['title'] = 'Lista de usuarios';
+			$data['clase'] = 'registro';
+			$data['email'] = $this->session->userdata('email');
+			$users['users'] = $this->getUsers();
+			$this->load->view('administracion/header.php', $data);
+			$this->load->view('users_list.php', $users);
+			$this->load->view('administracion/footer.php');
+		} else {
+			redirect('login');
+		}
 	}
 
 	public function getUsers()
 	{
 		return $this->UserModel->getUsers();
 	}
-
-	private 
 }

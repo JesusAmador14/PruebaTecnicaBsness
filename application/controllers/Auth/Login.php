@@ -6,9 +6,11 @@ class Login extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->library('form_validation');
+		$this->load->library(array('form_validation'));
 		$this->load->helper('login_rules');
+		$this->load->helper('get_ip');
 		$this->load->model('AuthModel');
+		$this->load->model('BinnecleModel');
 	}
 
 	public function index()
@@ -32,15 +34,37 @@ class Login extends CI_Controller
 		} else {
 			$email = $this->input->post('email');
 			$password = $this->input->post('password');
-			if ($this->AuthModel->login($email, $password)) {
-				$response = array('mensaje' => 'Verifique sus credenciales');
-				echo json_encode($response);
-				set_status_header(401);
-				exit;
-			}
-			$response = array('mensaje' => 'Bienvenido');
-			echo json_encode($response);
-			set_status_header(200);
+			$this->loginUser($email, $password);
 		}
+	}
+
+	public function loginUser($email, $password)
+	{
+		$password = md5($password);
+		if (!$res = $this->AuthModel->login($email, $password)) {
+			$response = array('mensaje' => 'Verifique sus credenciales');
+			echo json_encode($response);
+			set_status_header(401);
+			exit;
+		}
+		$this->AuthModel->createSession($res);
+		$this->insertLog($res->id_usuario);
+		$response = array('url' => 'users');
+		echo json_encode($response);
+		set_status_header(200);
+	}
+
+	public function insertLog($id)
+	{
+		$datos = array(
+			'id_usuario' => $id,
+			'ip_address' => getIP()
+		);
+		$this->BinnecleModel->insertLog($datos);
+	}
+
+	public function logOut()
+	{
+		$this->AuthModel->logOut();
 	}
 }
