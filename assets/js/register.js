@@ -41,3 +41,74 @@ function cargarDatosPostales(params) {
 
 
 // Enviando petición para guardar datos
+$('#formRegister').submit(function(ev) {
+    ev.preventDefault();
+    $('#alertError').removeClass('show');
+    $.ajax({
+        url: 'create/store',
+        type: 'POST',
+        data: $(this).serialize(),
+        success: function(data) {
+            console.log(data);
+            // var response = JSON.parse(data);
+            // location.href = response.url;
+        },
+        statusCode: {
+            400: function(error) {
+                console.log(error);
+                showError400(JSON.parse(error.responseText));
+            },
+            401: function(error) {
+                console.log(error);
+                showError401(JSON.parse(error.responseText));
+            }
+        }
+    });
+});
+
+
+// Error 400 es para errores en las validaciones de los campos
+
+function showError400(errors) {
+    console.log(errors);
+    $('#email').removeClass('is-invalid');
+    $('#nombre').removeClass('is-invalid');
+    $('#apellidos').removeClass('is-invalid');
+    $('#municipio').removeClass('is-invalid');
+    $('#estado').removeClass('is-invalid');
+    $('#codigoPostal').removeClass('is-invalid');
+    $('#telefono').removeClass('is-invalid');
+    if (errors.email.length != 0) {
+        $('#contenedorEmail > div').html(errors.email);
+        $('#email').addClass('is-invalid');
+    }
+    if (errors.nombre.length != 0) {
+        $('#contenedorNombre > div').html(errors.nombre);
+        $('#nombre ').addClass('is-invalid');
+    }
+    if (errors.municipio.length != 0) {
+        $('#contenedorMunicipio > div').html(errors.nombre);
+        $('#municipio').addClass('is-invalid');
+    }
+    if (errors.estado.length != 0) {
+        $('#contenedorEstado > div').html(errors.nombre);
+        $('#estado').addClass('is-invalid');
+    }
+    if (errors.telefono.length != 0) {
+        $('#contenedorTelefono > div').html(errors.nombre);
+        $('#telefono').addClass('is-invalid');
+    }
+    if (errors.codigoPostal.length != 0) {
+        $('#contenedorCodigoPostal > div').html(errors.nombre);
+        $('#codigoPostal').addClass('is-invalid');
+    }
+    if (errors.apellidos.length != 0) {
+        $('#contenedorApellidos > div').html(errors.nombre);
+        $('#apellidos').addClass('is-invalid');
+    }
+}
+// Error 401 es para error de autenticación del usuario
+function showError401(errors) {
+    $('#alertError').addClass('show');
+    $('#alertError').html(errors.mensaje + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
+}

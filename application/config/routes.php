@@ -58,4 +58,5 @@ $route['login'] = 'Auth/login';
 $route['login/validate'] = 'Auth/login/validate';
 $route['login/logOut'] = 'Auth/login/logOut';
 $route['users/create'] = 'Auth/RegisterUser';
+$route['users/create/store'] = 'Auth/RegisterUser/store';
 $route['users'] = 'User';
