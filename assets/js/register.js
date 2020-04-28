@@ -50,8 +50,7 @@ $('#formRegister').submit(function(ev) {
         data: $(this).serialize(),
         success: function(data) {
             console.log(data);
-            // var response = JSON.parse(data);
-            // location.href = response.url;
+            showSuccessRegister(JSON.parse(data));
         },
         statusCode: {
             400: function(error) {
@@ -111,4 +110,26 @@ function showError400(errors) {
 function showError401(errors) {
     $('#alertError').addClass('show');
     $('#alertError').html(errors.mensaje + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
+}
+
+// Decide que hacer con la respuesta correcta
+// Depende de si el email se envió o no
+function showSuccessRegister(data) {
+    if (data.email == true) {
+        Swal.fire({
+            icon: 'success',
+            title: '¡Correcto!',
+            text: 'Se ha registrado correctamente el usuario'
+        }).then(res => {
+            location.href = data.url;
+        });
+    } else {
+        Swal.fire({
+            icon: 'warning',
+            title: '¡Advertencia!',
+            text: 'Se ha registrado correctamente el usuario, pero no se ha enviado el email con sus accesos.'
+        }).then(res => {
+            location.href = data.url;
+        });
+    }
 }

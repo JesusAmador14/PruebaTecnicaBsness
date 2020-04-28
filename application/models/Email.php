@@ -19,11 +19,8 @@ class Email extends CI_Model
 		$mensaje = "Su contraseña es: " . $password;
 		$this->email->message($mensaje);
 		if ($this->email->send()) {
-			echo json_encode("SE ENVIOOOO");
 			return true;
 		} else {
-			echo json_encode("No SE ENVIOOOO");
-
 			return false;
 		}
 	}

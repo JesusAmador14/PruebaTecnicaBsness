@@ -60,13 +60,13 @@ class RegisterUser extends CI_Controller
 			$user = $this->getArrayUser($nombre, $apellidos, $telefono, $direccion);
 			$userAccesos = $this->getArrayUserAccesos($email, $password, $tipoUsuario);
 
-			if (!$this->UserModel->createUser($user, $userAccesos)) {
-				$response = array('mensaje' => 'Verifique sus credenciales');
+			if (!$res = $this->UserModel->createUser($user, $userAccesos)) {
+
+				$response = array('mensaje' => 'No se ha realizado el registro, verifique la información o contacte al administrador.');
 				echo json_encode($response);
 				set_status_header(401);
 				exit;
 			}
-
 			$this->sendMailUser($email, $password);
 		}
 	}
@@ -80,7 +80,14 @@ class RegisterUser extends CI_Controller
 	public function sendMailUser($email, $password)
 	{
 		$this->load->model('Email');
-		$this->Email->sendMailUserRegister($email, $password);
+		$url = base_url() . 'users';
+		if ($this->Email->sendMailUserRegister($email, $password)) {
+			$response = array('message' => true, 'url' => $url, 'email' => true);
+			echo json_encode($response);
+		} else {
+			$response = array('message' => true, 'url' => $url, 'email' => false);
+			echo json_encode($response);
+		}
 	}
 
 	public function getArrayUser($nombre, $apellidos, $telefono, $direccion)

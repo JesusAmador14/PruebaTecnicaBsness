@@ -37,13 +37,19 @@ class UserModel extends CI_Model
 	public function createUser($user, $userAccesos)
 	{
 		try {
-			$this->db->trans_start();
+			$this->db->trans_begin();
 			$this->db->insert('usuarios', $user);
 			$userAccesos['id_usuario'] = $this->db->insert_id();
 			$this->db->insert('accesos', $userAccesos);
-			$this->db->trans_complete();
-			return $this->db->trans_status();
+			if ($this->db->trans_status() === FALSE) {
+				$this->db->trans_rollback();
+				return false;
+			} else {
+				$this->db->trans_commit();
+				return true;
+			}
 		} catch (Exception $e) {
+			return $e->getMessage();
 		}
 	}
 }
