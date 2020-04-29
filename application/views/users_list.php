@@ -1,8 +1,11 @@
 <section class="container pt-5">
 	<div class="row">
 		<div class="card p-0 col-sm-12">
-			<div class="card-header">
+			<div class="card-header d-flex justify-content-between">
 				<h4>Lista de usuarios</h4>
+				<a href="<?= base_url() ?>generateReportUser" class="col-2 btn btn-block btn-outline-success">
+					Exportar <i class="fa fa-file-excel-o fa-lg"></i>
+				</a>
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">

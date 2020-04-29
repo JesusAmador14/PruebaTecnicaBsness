@@ -7,18 +7,27 @@ $.fn.datepicker.dates['es'] = {
     monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
     today: "Hoy",
     clear: "Clear",
-    format: "mm/dd/yyyy",
+    format: "yyyy/mm/dd",
     titleFormat: "MM yyyy",
-    weekStart: 0
+    weekStart: 0,
+    // format: 'yyyy-mm-dd'
 };
 
 var startDate = new Date();
-var day = startDate.getDate() + '/' + startDate.getMonth() + '/' + startDate.getFullYear();
+var day = startDate.getFullYear() + '/' + addZero(startDate.getMonth() + 1) + '/' + addZero(startDate.getDate());
+
 $('.input-daterange').datepicker({
     language: 'es',
-    calendarWeeks: true,
     autoclose: true,
     toggleActive: true,
     weekStart: 1,
-    startDate: day
+    endDate: day
 });
+
+
+function addZero(num) {
+    if (num < 10) {
+        num = '0' + num;
+    }
+    return num;
+}

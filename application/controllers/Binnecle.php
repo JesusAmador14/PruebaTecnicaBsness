@@ -38,6 +38,7 @@ class Binnecle extends CI_Controller
 		$data['clase'] = 'registro';
 		$data['email'] = $this->session->userdata('email');
 		$data['logs'] = $this->getLogs();
+		$data['users'] = $this->getUsersEmails();
 		$data['tipo_usuario'] = $this->session->userdata('tipo_usuario');
 		$this->load->view('administracion/header.php', $data);
 		$this->load->view('binnecle_list.php');
@@ -49,12 +50,19 @@ class Binnecle extends CI_Controller
 		$data['title'] = 'Bitacora';
 		$data['clase'] = 'registro';
 		$data['email'] = $this->session->userdata('email');
-		$id = $this->session->userdata('id_usuario');
+		$data['id_usuario'] = $this->session->userdata('id_usuario');
 		$data['tipo_usuario'] = $this->session->userdata('tipo_usuario');
-		$data['logs'] = $this->getLogsId($id);
+		$data['logs'] = $this->getLogsId($data['id_usuario']);
 		$this->load->view('administracion/header.php', $data);
 		$this->load->view('binnecle_list.php');
 		$this->load->view('administracion/footer.php');
+	}
+
+	public function getUsersEmails()
+	{
+		$this->load->model('UserModel');
+		$data = $this->UserModel->getUsersEmails();
+		return $data;
 	}
 
 	public function getLogs()

@@ -52,4 +52,18 @@ class UserModel extends CI_Model
 			return $e->getMessage();
 		}
 	}
+
+	public function getUsersEmails()
+	{
+		try {
+			$users = $this->db->query("SELECT id_usuario, email FROM Accesos");
+			if ($users->result() > 0) {
+				return $users->result();
+			} else {
+				return false;
+			}
+		} catch (Exception $e) {
+			echo $e;
+		}
+	}
 }

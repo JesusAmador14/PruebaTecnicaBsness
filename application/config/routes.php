@@ -54,10 +54,21 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 // Rutas del programa
+// rutas de la sesión
 $route['login'] = 'Auth/login';
 $route['login/validate'] = 'Auth/login/validate';
 $route['login/logOut'] = 'Auth/login/logOut';
+
+// Ruta para el controlador de usuarios
 $route['users/create'] = 'Auth/RegisterUser';
 $route['users/create/store'] = 'Auth/RegisterUser/store';
 $route['users'] = 'User';
+
+// Rutas del controlador de la bitacora
 $route['binnecle'] = 'Binnecle';
+
+// Ruta de reportes
+$route['generateReportUser'] = 'Reports/generateReportUsersData';
+$route['validateReportBinnecleGeneral'] = 'Reports/validateReportBinnecleGeneral';
+$route['validateReportBinnecleGeneral/(:num)'] = 'Reports/validateReportBinnecleGeneral';
+$route['validateReportBinnecleFilter'] = 'Reports/validateReportBinnecleFilter';
