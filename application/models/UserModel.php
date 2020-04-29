@@ -80,7 +80,7 @@ class UserModel extends CI_Model
 										CASE 
 											When `status` = 0 THEN 'Inactivo'
 											When `status` = 1 THEN 'Activo'
-										END 
+										END
 										AS
 										`status`
 										FROM Usuarios INNER JOIN Accesos ON Usuarios.id = Accesos.id_usuario
@@ -88,6 +88,20 @@ class UserModel extends CI_Model
 			if ($users->result() > 0) {
 				$user = $users->result();
 				return $user[0];
+			} else {
+				return false;
+			}
+		} catch (Exception $e) {
+			echo $e;
+		}
+	}
+
+	public function recoverPassword($id, $password)
+	{
+		try {
+			$users = $this->db->query("UPDATE Accesos SET password = '" . $password . "' WHERE id_usuario = " . $id . "");
+			if ($users->affected_rows() > 0) {
+				return true;
 			} else {
 				return false;
 			}

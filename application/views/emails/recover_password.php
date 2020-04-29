@@ -146,14 +146,14 @@
 	<div class="contenedor">
 		<div class="info_principal">
 			<h3 id="info_principal_text" style=" font-size: 38px">
-				Registro correcto
+				Recuperando accesos
 			</h3>
 		</div>
 
 		<div class="detail_info">
 			<br>
 			<div class="subtitulo centrar">
-				<p style="font-size: 20px;"><span>Has sido registrado en el sistema de Prueba Técnica:</span></p>
+				<p style="font-size: 20px;"><span>Tus datos de accesos son:</span></p>
 			</div>
 
 			<div class="detail_all">
@@ -177,8 +177,6 @@
 				</div>
 			</div>
 		</div>
-
-
 	</div>
 </body>
 

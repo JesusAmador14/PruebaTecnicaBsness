@@ -41,7 +41,7 @@
 						<?php echo isset($email) ? $email : 'Perfil'; ?>
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Perfil</a>
+						<a class="dropdown-item" href="<?= base_url() ?>profile">Perfil</a>
 						<a class="dropdown-item" href="<?= base_url() ?>login/logOut">Salir</a>
 					</div>
 				</li>

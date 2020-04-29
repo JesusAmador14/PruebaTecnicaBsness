@@ -75,3 +75,4 @@ $route['validateReportBinnecleFilter'] = 'Reports/validateReportBinnecleFilter';
 
 // Rutas del perfil
 $route['profile'] = 'Profile';
+$route['recoverPassword'] = 'Profile/recoverPassword';

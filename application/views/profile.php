@@ -43,7 +43,6 @@
 					<label for="tipoUsuario">Tipo de usuario</label>
 					<input type="text" class="form-control" name="estado" id="estado" value="<?= $user->tipo_usuario ?>" disabled placeholder="Tipo usuario" required>
 				</div>
-				<a href="" class="btn btn-primary">Recuperar contraseña</a>
 			</div>
 		</article>
 	</div>

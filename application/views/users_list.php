@@ -20,7 +20,6 @@
 								<th scope="col">Fecha de alta</th>
 								<th scope="col">Tipo de usuario</th>
 								<th scope="col">Estatus</th>
-								<th scope="col">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -34,9 +33,6 @@
 									<td><?php echo $user->fecha_alta; ?></td>
 									<td><?php echo $user->tipo_usuario; ?></td>
 									<td><?php echo $user->status; ?></td>
-									<td>
-										<button class="btn btn-danger">Eliminar</button>
-									</td>
 								</tr>
 							<?php } ?>
 						</tbody>
