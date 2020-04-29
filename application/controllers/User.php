@@ -16,9 +16,10 @@ class User extends CI_Controller
 			$data['title'] = 'Lista de usuarios';
 			$data['clase'] = 'registro';
 			$data['email'] = $this->session->userdata('email');
-			$users['users'] = $this->getUsers();
+			$data['tipo_usuario'] = $this->session->userdata('tipo_usuario');
+			$data['users'] = $this->getUsers();
 			$this->load->view('administracion/header.php', $data);
-			$this->load->view('users_list.php', $users);
+			$this->load->view('users_list.php');
 			$this->load->view('administracion/footer.php');
 		} else {
 			redirect('login');

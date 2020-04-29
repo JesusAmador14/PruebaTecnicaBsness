@@ -20,6 +20,7 @@ class RegisterUser extends CI_Controller
 			$data['title'] = 'Registro de usuarios';
 			$data['clase'] = 'registro';
 			$data['email'] = $this->session->userdata('email');
+			$data['tipo_usuario'] = $this->session->userdata('tipo_usuario');
 			$this->load->view('administracion/header.php', $data);
 			$this->load->view('register_user.php');
 			$this->load->view('administracion/footer.php');

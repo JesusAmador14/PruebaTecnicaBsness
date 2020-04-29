@@ -15,6 +15,25 @@ class Login extends CI_Controller
 
 	public function index()
 	{
+		if ($this->AuthModel->isLoggedAdministrator() || $this->AuthModel->isLoggedUser()) {
+
+			switch ($this->session->userdata('tipo_usuario')) {
+				case 0:
+					redirect('users');
+					break;
+				case 1:
+					redirect('binnecle');
+					break;
+				default:
+					break;
+			}
+		} else {
+			$this->loadView();
+		}
+	}
+
+	public function loadView()
+	{
 		$data['title'] = 'Inicio de sesión';
 		$this->load->view('login', $data);
 	}
@@ -49,11 +68,20 @@ class Login extends CI_Controller
 		}
 		$this->AuthModel->createSession($res);
 		$this->insertLog($res->id_usuario);
-		$response = array('url' => 'users');
-		echo json_encode($response);
-		set_status_header(200);
+		$this->redirectLogin($res);
 	}
 
+	public function redirectLogin($user)
+	{
+		if ($user->tipo_usuario == 0) {
+			$response = array('url' => 'users');
+			echo json_encode($response);
+		} else {
+			$response = array('url' => 'binnecle');
+			echo json_encode($response);
+		}
+		set_status_header(200);
+	}
 	public function insertLog($id)
 	{
 		$datos = array(

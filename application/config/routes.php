@@ -60,3 +60,4 @@ $route['login/logOut'] = 'Auth/login/logOut';
 $route['users/create'] = 'Auth/RegisterUser';
 $route['users/create/store'] = 'Auth/RegisterUser/store';
 $route['users'] = 'User';
+$route['binnecle'] = 'Binnecle';

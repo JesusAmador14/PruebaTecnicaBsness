@@ -4,6 +4,7 @@ class AuthModel extends CI_Model
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->helper('url');
 	}
 	public function login($email, $password)
 	{
@@ -23,6 +24,7 @@ class AuthModel extends CI_Model
 		$data = array(
 			'email' => $user->email,
 			'tipo_usuario' => $user->tipo_usuario,
+			'id_usuario' => $user->id_usuario,
 			'is_logged' => TRUE
 		);
 		$this->session->set_userdata($data);
@@ -37,7 +39,7 @@ class AuthModel extends CI_Model
 		);
 		$this->session->unset_userdata($data);
 		$this->session->sess_destroy();
-		redirect('login');
+		redirect(base_url() + 'login');
 	}
 
 	public function isLoggedAdministrator()
