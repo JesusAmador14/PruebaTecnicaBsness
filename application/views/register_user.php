@@ -24,7 +24,7 @@
 						</div>
 						<div class="form-group col-sm-12 col-lg-6" id="contenedorTelefono">
 							<label for="telefono">Teléfono</label>
-							<input type="text" class="form-control" name="telefono" id="telefono" pattern="^(\d{10})$" title="Debes ingresar solo números y minímo 10 digitos" placeholder="Teléfono" required>
+							<input type="tel" class="form-control" name="telefono" id="telefono" pattern="^(\d{10})$" title="Debes ingresar solo números y minímo 10 digitos" placeholder="Teléfono" required>
 							<div class="invalid-feedback"></div>
 						</div>
 					</div>

@@ -72,3 +72,6 @@ $route['generateReportUser'] = 'Reports/generateReportUsersData';
 $route['validateReportBinnecleGeneral'] = 'Reports/validateReportBinnecleGeneral';
 $route['validateReportBinnecleGeneral/(:num)'] = 'Reports/validateReportBinnecleGeneral';
 $route['validateReportBinnecleFilter'] = 'Reports/validateReportBinnecleFilter';
+
+// Rutas del perfil
+$route['profile'] = 'Profile';
